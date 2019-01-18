@@ -26,11 +26,12 @@ class Products(Resource):
         if instock:
             instock = int(instock)
         if item_name:
-            response = get_item_name(item_name)
+            response = [get_item_name(item_name)]
         else:
             response = get_all_items()
         if instock:
             response = filter_stock(response)
+
         return response
 
 
@@ -68,7 +69,7 @@ def get_item_name(name):
     for prod in product_dict:
         if prod['name'] == name:
             return prod
-    return prod
+    return []
 
 def get_all_items():
     return product_dict
